@@ -56,3 +56,6 @@ Examples:
   | Username |
   | Vince |
   | matthewhunt |
+  | Chris95 |
+  | D£v |
+  | M4TT |
