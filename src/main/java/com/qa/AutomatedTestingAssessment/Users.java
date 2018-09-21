@@ -14,6 +14,7 @@ public class Users {
 	private WebElement userTable;
 	
 	private String[] userXPath = {"//*[@id=\"people\"]/tbody/tr[","]/td[2]/a"};
+	private String[] deleteXPath = {"//*[@id=\"people\"]/tbody/tr[","]/td[4]/a[2]/img"};
 	
 	//*[@id="people"]/tbody/tr[4]/td[2]/a
 	
@@ -42,6 +43,21 @@ public class Users {
 		}
 		WebElement user = driver.findElement(By.xpath(userXPath[0]+i+userXPath[1]));
 		user.click();
+	}
+	
+	public void clickDelete(WebDriver driver, String username)	{
+		String userTStr = userTable.getText();
+		String[] rows = userTStr.split("\n");
+		int i;
+		for (i = 2; i < rows.length; i++)	{
+			// System.out.println(rows[i].split(" ")[0].equals(username));
+			if (rows[i].split(" ")[0].equals(username)) break;
+		}
+		WebElement delete = driver.findElement(By.xpath(deleteXPath[0]+i+deleteXPath[1]));
+		delete.click();
+		
+//		Constants.data.updateCurrentRow(username);
+//		Constants.data.deleteRow(Constants.data.currentRow);
 	}
 
 }

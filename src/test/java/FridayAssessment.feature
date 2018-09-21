@@ -45,4 +45,14 @@ Examples:
   | Chris95 | chris@qa.com |
   | M4TT | matt@qa.com |
   | D£v | dev@qa.com |
-  
+
+Scenario Outline: Remove a User from the database
+  Given the "<Username>" username is visible on the UsersScreen
+  When the 'x' by "<Username>" username is clicked
+  And 'yes' is selected
+  Then the "<Username>" username should not be visable
+
+Examples:
+  | Username |
+  | Vince |
+  | matthewhunt |

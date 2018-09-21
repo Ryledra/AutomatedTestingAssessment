@@ -262,6 +262,28 @@ public class TestSteps {
 		HelperMethods.screenshot(driver);
 	}
 	
+	@When("^the 'x' by \"([^\"]*)\" username is clicked$")
+	public void the_x_by_username_is_clicked(String arg1) throws Throwable {
+		Users uPage = PageFactory.initElements(driver, Users.class);
+		uPage.clickDelete(driver, arg1);
+		test.log(LogStatus.INFO, "User "+arg1+" delete button selected");
+	}
+
+	@When("^'yes' is selected$")
+	public void yes_is_selected() throws Throwable {
+		DeleteUser dUPage = PageFactory.initElements(driver, DeleteUser.class);
+		dUPage.confirmDelete();
+		test.log(LogStatus.INFO, "yes selected");
+	}
+
+	@Then("^the \"([^\"]*)\" username should not be visable$")
+	public void the_username_should_not_be_visable(String arg1) throws Throwable {
+		Users uPage = PageFactory.initElements(driver, Users.class);
+		if(!uPage.checkUser(arg1))
+			test.log(LogStatus.PASS, "User "+arg1+" deleted");
+		else test.log(LogStatus.FAIL, "User "+arg1+" not deleted");
+	}
+	
 	@After
 	public void tearDown()	{
 		report.endTest(test);

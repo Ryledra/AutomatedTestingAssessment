@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -36,6 +35,7 @@ public class ExcelUtils {
 	
 	public void updateCurrentRow(String username)	{
 		for (int i = 1; i < this.getPhysicalNumberOfRows(); i++)	{
+			if (sheet.getRow(i) == null) continue;
 			if (sheet.getRow(i).getCell(0).getStringCellValue().equals(username))	{
 				currentRow = i;
 				break;
@@ -51,9 +51,7 @@ public class ExcelUtils {
 		return sheet.getRow(row).getCell(col).getStringCellValue();
 	}
 
-	@SuppressWarnings("unused")
 	public void writeToCell(String str, int row, int col)	{
-
 		try {
 			sheet.getRow(row).getCell(col).setCellValue(str);
 			
@@ -67,10 +65,14 @@ public class ExcelUtils {
 			if (sheet.getRow(row) == null)	{
 				sheet.createRow(row);
 			}
-			XSSFCell Cell = sheet.getRow(row).createCell(col);
+			sheet.getRow(row).createCell(col);
 			writeToCell(str, row, col);
 		} catch (IOException e) {
 			System.out.println("you left the .xlsx file open");
 		}
+	}
+	
+	public void deleteRow(int row)	{
+		sheet.removeRow(sheet.getRow(row));
 	}
 }
