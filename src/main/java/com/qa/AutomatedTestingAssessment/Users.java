@@ -3,6 +3,7 @@ package com.qa.AutomatedTestingAssessment;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class Users {
@@ -54,7 +55,9 @@ public class Users {
 			if (rows[i].split(" ")[0].equals(username)) break;
 		}
 		WebElement delete = driver.findElement(By.xpath(deleteXPath[0]+i+deleteXPath[1]));
-		delete.click();
+		
+		Actions act = new Actions(driver);
+		act.moveToElement(delete).click().perform();
 		
 //		Constants.data.updateCurrentRow(username);
 //		Constants.data.deleteRow(Constants.data.currentRow);

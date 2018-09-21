@@ -272,7 +272,7 @@ public class TestSteps {
 	@When("^'yes' is selected$")
 	public void yes_is_selected() throws Throwable {
 		DeleteUser dUPage = PageFactory.initElements(driver, DeleteUser.class);
-		dUPage.confirmDelete();
+		dUPage.confirmDelete(driver);
 		test.log(LogStatus.INFO, "yes selected");
 	}
 
