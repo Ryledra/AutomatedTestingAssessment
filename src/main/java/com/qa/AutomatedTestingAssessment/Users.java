@@ -59,8 +59,8 @@ public class Users {
 		Actions act = new Actions(driver);
 		act.moveToElement(delete).click().perform();
 		
-//		Constants.data.updateCurrentRow(username);
-//		Constants.data.deleteRow(Constants.data.currentRow);
+		Constants.data.updateCurrentRow(username);
+		Constants.data.deleteRow(Constants.data.currentRow);
 	}
 
 }

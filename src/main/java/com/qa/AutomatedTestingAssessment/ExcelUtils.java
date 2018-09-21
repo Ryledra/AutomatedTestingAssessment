@@ -73,6 +73,17 @@ public class ExcelUtils {
 	}
 	
 	public void deleteRow(int row)	{
-		sheet.removeRow(sheet.getRow(row));
+		sheet.shiftRows(row+1, this.getPhysicalNumberOfRows(), -1);
+		
+		try {
+			FileOutputStream fileOut = new FileOutputStream(Constants.DATAFPATH + Constants.DATAFNAME);
+			workbook.write(fileOut);
+			fileOut.flush();
+			fileOut.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

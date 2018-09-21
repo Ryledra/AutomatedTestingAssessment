@@ -168,7 +168,7 @@ public class TestSteps {
 
 	@Given("^the \"([^\"]*)\" Username's profile page has been loaded$")
 	public void the_Username_s_profile_page_has_been_loaded(String arg1) throws Throwable {
-		test = report.startTest("Scenario - Edit user email");
+		test = report.startTest("Scenario - Edit user email (or maybe delete?)");
 		
 		test.log(LogStatus.INFO, "Logged in as 'admin'");
 		
